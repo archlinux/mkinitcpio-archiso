@@ -5,7 +5,7 @@ PREFIX ?= /usr/local
 INSTALL_DIR=$(DESTDIR)$(PREFIX)/lib/initcpio/install
 HOOKS_DIR=$(DESTDIR)$(PREFIX)/lib/initcpio/hooks
 SCRIPT_DIR=$(DESTDIR)$(PREFIX)/lib/initcpio
-DOC_DIR=$(DESTDIR)$(PREFIX)/share/doc/archiso
+DOC_DIR=$(DESTDIR)$(PREFIX)/share/doc/mkinitcpio-archiso
 
 INSTALL_FILES=$(wildcard install/*)
 HOOKS_FILES=$(wildcard hooks/*)
