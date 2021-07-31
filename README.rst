@@ -1,0 +1,95 @@
+==================
+mkinitcpio-archiso
+==================
+
+The mkinitcpio-archiso project provides `initcpio <https://gitlab.archlinux.org/mkinitcpio/mkinitcpio>`_ integration for
+`archiso <https://gitlab.archlinux.org/archlinux/archiso>`_.
+The scripts offer functionality for an environment, that is running in `early user space
+<https://en.wikipedia.org/wiki/Linux_startup_process#Early_user_space>`_ by modifying an `initrd
+<https://man.archlinux.org/man/initrd.4>`_.
+
+Requirements
+============
+
+The following packages need to be installed to be able to use mkinitcpio-archiso on a target host:
+
+* bash
+* ca-certificates-utils (for PXE over HTTP)
+* coreutils
+* curl (for PXE over HTTP)
+* device-mapper
+* gnupg
+* mkinitcpio
+* mkinitcpio-nfs-utils (for PXE over NFS)
+* nbd (for PXE over NBD)
+* pv (optional: for displaying status when copying the image to RAM)
+* util-linux
+
+The following packages need to be installed to be able to check the code of mkinitcpio-archiso (when running ``make
+check``):
+
+* shellcheck
+* shfmt
+
+Installation
+============
+
+To install this project, the make target ``install`` can be used. It honors both ``DESTDIR`` and ``PREFIX`` (defaults to
+``/usr/local``).
+
+.. code:: sh
+
+   make install DESTDIR=/some/directory PREFIX=/usr
+
+Documentation
+=============
+
+Documentation on various aspects of mkinitcpio-archiso can be found in the `docs directory <docs/>`_.
+
+Contribute
+==========
+
+Development of mkinitcpio-archiso takes place on Arch Linux' Gitlab:
+https://gitlab.archlinux.org/archlinux/mkinitcpio-archiso.
+
+Please read our distribution-wide `Code of Conduct <https://wiki.archlinux.org/title/Code_of_conduct>`_ before
+contributing, to understand what actions will and will not be tolerated.
+
+Read our `contributing guide <CONTRIBUTING.rst>`_ to learn more about how to provide fixes or improvements for the code
+base.
+
+Discussion around mkinitcpio-archiso takes place on the `arch-releng mailing list
+<https://lists.archlinux.org/listinfo/arch-releng>`_ and in `#archlinux-releng
+<ircs://irc.libera.chat/archlinux-releng>`_ on `Libera Chat <https://libera.chat/>`_.
+
+All past and present authors of mkinitcpio-archiso are listed in `AUTHORS <AUTHORS.rst>`_.
+
+Releases
+========
+
+`Releases of mkinitcpio-archiso <https://gitlab.archlinux.org/archlinux/mkinitcpio-archiso/-/tags>`_ are created by its
+current maintainer `David Runge <https://gitlab.archlinux.org/dvzrv>`_. Tags are signed using the PGP key with the ID
+``C7E7849466FE2358343588377258734B41C31549``.
+
+  .. note::
+
+     Releases before v58 have been done as part of `archiso <https://gitlab.archlinux.org/archlinux/archiso>`_. After
+     ``archiso`` v57 mkinitcpio-archiso became its own project.
+
+To verify a tag, first import the relevant PGP key:
+
+.. code:: sh
+
+   gpg --auto-key-locate wkd --search-keys dvzrv@archlinux.org
+
+
+Afterwards a tag can be verified from a clone of this repository:
+
+.. code:: sh
+
+   git verify-tag <tag>
+
+License
+=======
+
+Mkinitcpio-archiso is licensed under the terms of the **GPL-3.0-or-later** (see `LICENSE <LICENSE>`_).
