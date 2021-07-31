@@ -1,8 +1,3 @@
-# EditorConfig for archiso
-# https://editorconfig.org/
-#
-# SPDX-License-Identifier: GPL-3.0-or-later
-
 # Top-most EditorConfig file
 root = true
 
