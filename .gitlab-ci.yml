@@ -1,0 +1,21 @@
+---
+
+image: archlinux:latest
+
+stages:
+  - check
+  - integration
+
+check:
+  before_script:
+    - pacman --noconfirm -Syu --needed make shellcheck shfmt
+  script:
+    - make check
+  stage: check
+
+test_installation:
+  before_script:
+    - pacman --noconfirm -Syu --needed make
+  script:
+    - make install PREFIX=/usr
+  stage: integration
