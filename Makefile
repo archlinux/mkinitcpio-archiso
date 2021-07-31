@@ -1,52 +1,36 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-INSTALL_FILES=$(wildcard archiso/initcpio/install/*)
-HOOKS_FILES=$(wildcard archiso/initcpio/hooks/*)
-SCRIPT_FILES=$(wildcard archiso/initcpio/script/*)
+PREFIX ?= /usr/local
+INSTALL_DIR=$(DESTDIR)$(PREFIX)/lib/initcpio/install
+HOOKS_DIR=$(DESTDIR)$(PREFIX)/lib/initcpio/hooks
+SCRIPT_DIR=$(DESTDIR)$(PREFIX)/lib/initcpio
+DOC_DIR=$(DESTDIR)$(PREFIX)/share/doc/archiso
 
-INSTALL_DIR=$(DESTDIR)/usr/lib/initcpio/install
-HOOKS_DIR=$(DESTDIR)/usr/lib/initcpio/hooks
-SCRIPT_DIR=$(DESTDIR)/usr/lib/initcpio
-
+INSTALL_FILES=$(wildcard install/*)
+HOOKS_FILES=$(wildcard hooks/*)
+SCRIPT_FILES=$(wildcard script/*)
 DOC_FILES=$(wildcard docs/*) $(wildcard *.rst)
-
-DOC_DIR=$(DESTDIR)/usr/share/doc/archiso
-
 
 all:
 
-check: lint
+check: shellcheck
 
-lint:
-	shellcheck -s bash archiso/mkarchiso \
-	                   $(wildcard scripts/*.sh) \
-	                   $(wildcard .gitlab/ci/*.sh) \
-	                   $(INSTALL_FILES) \
-	                   $(wildcard configs/*/build.sh) \
-	                   $(wildcard configs/*/profiledef.sh) \
-	                   configs/releng/airootfs/root/.automated_script.sh \
-	                   configs/releng/airootfs/usr/local/bin/choose-mirror \
-	                   configs/releng/airootfs/usr/local/bin/livecd-sound
+shellcheck:
+	shellcheck -s bash $(INSTALL_FILES)
 	shellcheck -s dash $(HOOKS_FILES) $(SCRIPT_FILES)
 
-install: install-program install-examples install-doc
+shfmt:
+	shfmt -i 4 -d $(INSTALL_FILES) $(HOOKS_FILES) $(SCRIPT_FILES)
 
-install-program:
-	install -vDm 755 archiso/mkarchiso -t "$(DESTDIR)/usr/bin/"
-	install -vDm 755 scripts/run_archiso.sh "$(DESTDIR)/usr/bin/run_archiso"
+install: install-initcpio install-doc
 
 install-initcpio:
-	install -d $(SCRIPT_DIR) $(HOOKS_DIR) $(INSTALL_DIR)
-	install -m 755 -t $(SCRIPT_DIR) $(SCRIPT_FILES)
-	install -m 644 -t $(HOOKS_DIR) $(HOOKS_FILES)
-	install -m 644 -t $(INSTALL_DIR) $(INSTALL_FILES)
-
-install-examples:
-	install -d -m 755 $(DESTDIR)/usr/share/archiso/
-	cp -a --no-preserve=ownership configs $(DESTDIR)/usr/share/archiso/
+	install -vDm 755 $(SCRIPT_FILES) -t $(SCRIPT_DIR)
+	install -vDm 644 $(HOOKS_FILES) -t $(HOOKS_DIR)
+	install -vDm 644 $(INSTALL_FILES) -t $(INSTALL_DIR)
 
 install-doc:
 	install -vDm 644 $(DOC_FILES) -t $(DOC_DIR)
 
-.PHONY: check install install-program install-initcpio install-examples install-doc lint
+.PHONY: check install install-initcpio install-doc shellcheck shfmt
