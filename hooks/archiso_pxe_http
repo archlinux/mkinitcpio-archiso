@@ -37,7 +37,7 @@ _curl_get() {
     fi
 }
 
-archiso_pxe_http_mount_handler () {
+archiso_pxe_http_mount_handler() {
     newroot="${1}"
     local img_type="sfs"
 
