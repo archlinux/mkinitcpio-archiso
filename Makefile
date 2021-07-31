@@ -14,14 +14,14 @@ DOC_FILES=$(wildcard docs/*) $(wildcard *.rst)
 
 all:
 
-check: shellcheck
+check: shellcheck shfmt
 
 shellcheck:
 	shellcheck -s bash $(INSTALL_FILES)
 	shellcheck -s dash $(HOOKS_FILES) $(SCRIPT_FILES)
 
 shfmt:
-	shfmt -i 4 -d $(INSTALL_FILES) $(HOOKS_FILES) $(SCRIPT_FILES)
+	shfmt -i 4 -d $(HOOKS_FILES) $(INSTALL_FILES) $(SCRIPT_FILES)
 
 install: install-initcpio install-doc
 

@@ -19,10 +19,10 @@ build() {
     add_binary gpg
     add_binary grep
 
-    if command -v pv > /dev/null 2>&1; then
-      add_binary pv
+    if command -v pv >/dev/null 2>&1; then
+        add_binary pv
     else
-      warning 'pv not found; falling back to cp for copy to RAM'
+        warning 'pv not found; falling back to cp for copy to RAM'
     fi
 
     add_file /usr/lib/udev/rules.d/60-cdrom_id.rules
@@ -31,6 +31,6 @@ build() {
     add_file /usr/lib/initcpio/udev/11-dm-initramfs.rules /usr/lib/udev/rules.d/11-dm-initramfs.rules
     if [[ $ARCHISO_GNUPG_FD ]]; then
         mkdir -m 0700 -- "$BUILDROOT/gpg"
-        gpg --homedir "$BUILDROOT/gpg" --import <& "$ARCHISO_GNUPG_FD"
+        gpg --homedir "$BUILDROOT/gpg" --import <&"$ARCHISO_GNUPG_FD"
     fi
 }
