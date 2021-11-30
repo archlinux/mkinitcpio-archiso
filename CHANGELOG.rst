@@ -2,6 +2,19 @@
 Changelog
 #########
 
+[59] - 2021-11-30
+=================
+
+Added
+-----
+
+- Add a mailmap file for better author integration in git
+
+Changed
+-------
+
+- Make PGP verification more verbose and fix message output
+
 [58] - 2021-07-31
 =================
 
