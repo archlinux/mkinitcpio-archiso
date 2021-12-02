@@ -113,7 +113,7 @@ _mnt_erofs() {
     fi
     erofs_dev="$(losetup --find --show --read-only -- "${img}")"
     echo "${erofs_dev}" >>/run/archiso/used_block_devices
-    _mnt_dev "${erofs_dev}" "${mnt}" "-r" "defaults" "erofs"
+    _mnt_dev "${erofs_dev}" "${mnt}" "-r" "defaults"
 }
 
 # args: device, mountpoint, flags, opts
@@ -122,7 +122,6 @@ _mnt_dev() {
     local mnt="${2}"
     local flg="${3}"
     local opts="${4}"
-    local fstype="${5:-auto}"
 
     mkdir -p "${mnt}"
 
@@ -135,7 +134,7 @@ _mnt_dev() {
         launch_interactive_shell
     done
 
-    if mount -t "${fstype}" -o "${opts}" "${flg}" "${dev}" "${mnt}"; then
+    if mount -o "${opts}" "${flg}" "${dev}" "${mnt}"; then
         msg ":: Device '${dev}' mounted successfully."
     else
         echo "ERROR; Failed to mount '${dev}'"
