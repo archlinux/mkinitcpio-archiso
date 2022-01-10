@@ -244,7 +244,10 @@ archiso_mount_handler() {
     fi
 
     if [ -n "${cow_device}" ]; then
-        _mnt_dev "${cow_device}" "/run/archiso/cowspace" "-w" "${cow_flags}"
+        # Mount cow_device read-only at first and remount it read-write right after. This prevents errors when the
+        # device is already mounted read-only somewhere else (e.g. if cow_device and archisodevice are the same).
+        _mnt_dev "${cow_device}" "/run/archiso/cowspace" "-r" "${cow_flags}"
+        mount -o remount,rw "/run/archiso/cowspace"
     else
         msg ":: Mounting /run/archiso/cowspace (tmpfs) filesystem, size=${cow_spacesize}..."
         mkdir -p /run/archiso/cowspace
