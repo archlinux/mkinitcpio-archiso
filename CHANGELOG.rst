@@ -14,6 +14,23 @@ Changed
 Removed
 -------
 
+[61] - 2022-01-31
+=================
+
+Added
+-----
+
+- Add further contributing guidelines around the use of the changelog and how maintainers deal with merge requests
+
+Changed
+-------
+
+- Mount cowspace readonly and read-write afterwards to prevent errors if multiple mounts are active
+- Extend default DHCP timeout to 60s to avoid issues with Spanning Tree Protocol (STP)
+
+Removed
+-------
+
 [60] - 2021-12-28
 =================
 
