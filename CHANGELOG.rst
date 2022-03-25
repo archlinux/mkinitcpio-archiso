@@ -14,6 +14,14 @@ Changed
 Removed
 -------
 
+[62] - 2022-03-25
+=================
+
+Changed
+-------
+
+- The archiso_kms hook adds all DRM and AGP kernel modules not just a select few.
+
 [61] - 2022-01-31
 =================
 
