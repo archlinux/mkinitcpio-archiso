@@ -96,8 +96,6 @@ _mnt_dev() {
     local flg="${3}"
     local opts="${4}"
 
-    mkdir -p "${mnt}"
-
     msg ":: Mounting '${dev}' to '${mnt}'"
 
     while ! poll_device "${dev}" 30; do
@@ -107,7 +105,7 @@ _mnt_dev() {
         launch_interactive_shell
     done
 
-    if mount -o "${opts}" "${flg}" "${dev}" "${mnt}"; then
+    if mount --mkdir -o "${opts}" "${flg}" "${dev}" "${mnt}"; then
         msg ":: Device '${dev}' mounted successfully."
     else
         echo "ERROR; Failed to mount '${dev}'"
