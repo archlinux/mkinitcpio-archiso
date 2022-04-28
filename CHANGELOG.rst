@@ -14,6 +14,14 @@ Changed
 Removed
 -------
 
+[63] - 2022-04-28
+=================
+
+Changed
+-------
+
+- Replace all feasible instances of ``mkdir`` preceding ``mount`` with ``mount --mkdir``.
+
 [62] - 2022-03-25
 =================
 
