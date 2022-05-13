@@ -19,6 +19,7 @@ The following packages need to be installed to be able to use mkinitcpio-archiso
 * curl (for PXE over HTTP)
 * device-mapper
 * gnupg
+* openssl (for verifying CMS signatures generated in archiso)
 * mkinitcpio
 * mkinitcpio-nfs-utils (for PXE over NFS)
 * nbd (for PXE over NBD)

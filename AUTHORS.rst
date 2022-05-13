@@ -23,3 +23,4 @@ Mkinitcpio-archiso Authors
 * Thomas Bächler <thomas@archlinux.org>
 * nl6720 <nl6720@gmail.com>
 * Øyvind Heggstad <heggstad@gmail.com>
+* Anton Hvornum <anton@hvornum.se>

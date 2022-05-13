@@ -18,6 +18,7 @@ build() {
     add_binary truncate
     add_binary gpg
     add_binary grep
+    add_binary openssl
 
     if command -v pv >/dev/null 2>&1; then
         add_binary pv
@@ -32,5 +33,11 @@ build() {
     if [[ $ARCHISO_GNUPG_FD ]]; then
         mkdir -m 0700 -- "$BUILDROOT/gpg"
         gpg --homedir "$BUILDROOT/gpg" --import <&"$ARCHISO_GNUPG_FD"
+    fi
+    if [[ -v ARCHISO_TLS_FD ]]; then
+        cat <&"$ARCHISO_TLS_FD" >"${BUILDROOT}/codesign.crt"
+    fi
+    if [[ -v ARCHISO_TLSCA_FD ]]; then
+        cat <&"$ARCHISO_TLSCA_FD" >"${BUILDROOT}/codesign_CA.crt"
     fi
 }

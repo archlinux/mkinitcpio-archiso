@@ -8,6 +8,8 @@ Changelog
 Added
 -----
 
+- The option to verify the rootfs signature using openssl CMS module against a specified CA.
+
 Changed
 -------
 

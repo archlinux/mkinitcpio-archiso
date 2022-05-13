@@ -63,6 +63,7 @@ INDEX
 * arch=             Force an architecture type (i686 | x86_64).
                     Do not set it for normal operations.
                     Default: (architecture of running kernel)
+* cms_verify=       Turns on OpenSSL CMS signature varification for the root file system image.
 
 
 ** hooks/archiso_pxe_common
