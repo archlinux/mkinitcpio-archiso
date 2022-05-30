@@ -11,6 +11,9 @@ Added
 Changed
 -------
 
+- Automatically enable ``copytoram`` if rootfs image size is less than 4 GiB and free RAM exceeds the rootfs image size
+  plus 2 GiB.
+
 Removed
 -------
 

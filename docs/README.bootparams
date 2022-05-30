@@ -23,11 +23,15 @@ INDEX
                     Default: "/dev/disk/by-label/${archisolabel}"
 * archisobasedir=   Set the base directory where all files reside.
                     Default: "arch"
-* copytoram=        If set to "y" or just "copytoram" without arguments,
-                    all SquashFS are copied to "RAM". If you add the package
-                    "pv" to the packages.x86_64 it is used to display the copy
-                    progress.
-                    Default: (unset)
+* copytoram=        If set to "y", the root file system image is copied to
+                    tmpfs.
+                    If set to "auto", the root file system image is copied to
+                    tmpfs if the root file system image is less than 4 GiB and
+                    the free RAM exceeds the root file system image size plus
+                    2 GiB.
+                    If you add the package "pv" to the packages.x86_64 it is
+                    used to display the copy progress.
+                    Default: "auto"
 * checksum=         If set to "y" or just "checksum" without arguments,
                     performs a self-test of all files inside ${install_dir},
                     and continue booting if ok.
