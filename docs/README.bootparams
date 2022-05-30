@@ -32,6 +32,11 @@ INDEX
                     If you add the package "pv" to the packages.x86_64 it is
                     used to display the copy progress.
                     Default: "auto"
+* copytoram_size=   Set the size of tmpfs. This space is used for
+                    airootfs.sfs image if copytoram=y.
+                    Size is in bytes (suffix with "k", "m" and "g") or
+                    in percentage of available RAM.
+                    Default: "75%"
 * checksum=         If set to "y" or just "checksum" without arguments,
                     performs a self-test of all files inside ${install_dir},
                     and continue booting if ok.
@@ -56,11 +61,6 @@ INDEX
 * cow_chunksize=    Set chunksize used for dm-snapshot. This is number
                     of 512 byte blocks to write at once.
                     Default: "8"
-* copytoram_size=   Set the size of tmpfs. This space is used for
-                    airootfs.sfs image if copytoram=y.
-                    Size is in bytes (suffix with "k", "m" and "g") or
-                    in percentage of available RAM.
-                    Default: "75%"
 * dm_snap_prefix=   Set a prefix for dm-snapshot node names.
                     Only used for dm-snapshot mode, ignored for overlayfs.
                     Default: "arch"
