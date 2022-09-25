@@ -8,13 +8,19 @@ Changelog
 Added
 -----
 
-- The option to verify the rootfs signature using openssl CMS module against a specified CA.
-
 Changed
 -------
 
 Removed
 -------
+
+[64] - 2022-09-25
+=================
+
+Added
+-----
+
+- The option to verify the rootfs signature using openssl CMS module against a specified CA.
 
 [63] - 2022-04-28
 =================
