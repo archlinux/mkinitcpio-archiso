@@ -144,6 +144,7 @@ _verify_cms_signature() {
     local certfile="/codesign.crt"
     local cafile="/codesign_CA.crt"
 
+    # Use the signer certificate as the CA certificate to allow validating with self-signed certificates.
     if [ ! -e "$cafile" ]; then
         cafile="$certfile"
     fi
