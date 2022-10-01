@@ -154,6 +154,7 @@ _verify_cms_signature() {
         -verify \
         -binary \
         -noattr \
+        -nointern \
         -purpose any \
         -in "${cms_sigfile}" \
         -content "${bootfile}" \
