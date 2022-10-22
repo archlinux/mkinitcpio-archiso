@@ -15,17 +15,18 @@ all:
 check: shellcheck shfmt
 
 shellcheck:
-	shellcheck -s bash $(INSTALL_FILES)
-	shellcheck -s dash $(HOOKS_FILES)
+	shellcheck -s bash $(shell find -P $(INSTALL_FILES) -type f)
+	shellcheck -s dash $(shell find -P $(HOOKS_FILES) -type f)
 
 shfmt:
-	shfmt -i 4 -d $(HOOKS_FILES) $(INSTALL_FILES)
+	shfmt -i 4 -d $(shell find -P $(HOOKS_FILES) $(INSTALL_FILES) -type f)
 
 install: install-initcpio install-doc
 
 install-initcpio:
-	install -vDm 644 $(HOOKS_FILES) -t $(HOOKS_DIR)
-	install -vDm 644 $(INSTALL_FILES) -t $(INSTALL_DIR)
+	install -vdm755 $(HOOKS_DIR) $(INSTALL_DIR)
+	cp -at $(HOOKS_DIR)/ $(HOOKS_FILES)
+	cp -at $(INSTALL_DIR)/ $(INSTALL_FILES)
 
 install-doc:
 	install -vDm 644 $(DOC_FILES) -t $(DOC_DIR)
