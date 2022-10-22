@@ -18,6 +18,8 @@ Changed
 Removed
 -------
 
+- Deprecate the ``archiso_kms`` hook. It is now part of mkinitcpio and is called ``kms``.
+
 [64] - 2022-09-25
 =================
 
