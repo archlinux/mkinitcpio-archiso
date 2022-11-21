@@ -11,6 +11,8 @@ Added
 Changed
 -------
 
+- Use mkinitcpio's ``add_udev_rule`` function to add udev rules instead of adding them as regular files.
+
 Removed
 -------
 
