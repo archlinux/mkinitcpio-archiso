@@ -7,7 +7,7 @@ build() {
 
     add_runscript
 
-    add_binary /usr/lib/initcpio/ipconfig /bin/ipconfig
+    add_binary /usr/lib/initcpio/ipconfig /usr/bin/ipconfig
 
     # Add hosts support files+dns
     add_symlink /usr/lib/libnss_files.so.2 "$(readlink /usr/lib/libnss_files.so.2)"
