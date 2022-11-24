@@ -19,6 +19,9 @@ Changed
 Removed
 -------
 
+- The ``archiso`` hook will not include the ``mountpoint``, ``truncate`` and ``grep`` binaries in the initramfs anymore.
+  The busybox versions of these tools (as provided by mkinitcpio's ``base`` hook) are sufficient.
+
 [65] - 2022-10-30
 =================
 

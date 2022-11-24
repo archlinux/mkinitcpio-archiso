@@ -13,10 +13,7 @@ build() {
     add_binary blockdev
     add_binary dmsetup
     add_binary losetup
-    add_binary mountpoint
-    add_binary truncate
     add_binary gpg
-    add_binary grep
     add_binary openssl
 
     if command -v pv >/dev/null 2>&1; then
