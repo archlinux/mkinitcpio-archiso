@@ -11,6 +11,8 @@ Added
 Changed
 -------
 
+- Do not include the ``gpg`` binary unless the initramfs will also include a GPG keyring.
+
 Removed
 -------
 

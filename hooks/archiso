@@ -241,6 +241,11 @@ archiso_mount_handler() {
     # shellcheck disable=SC2154
     # defined via initcpio's parse_cmdline()
     if [ "${verify}" = "y" ]; then
+        if ! command -v gpg >/dev/null 2>&1; then
+            echo 'ERROR: verify=y option specified but the gpg binary is not available in initramfs'
+            launch_interactive_shell
+        fi
+
         if [ -f "${fs_img}.sig" ]; then
             sigfile="${fs_img##*/}.sig"
 

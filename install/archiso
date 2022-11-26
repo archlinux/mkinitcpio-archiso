@@ -13,7 +13,6 @@ build() {
     add_binary blockdev
     add_binary dmsetup
     add_binary losetup
-    add_binary gpg
     add_binary openssl
 
     if command -v pv >/dev/null 2>&1; then
@@ -27,7 +26,8 @@ build() {
     add_udev_rule 95-dm-notify.rules
     add_udev_rule /usr/lib/initcpio/udev/11-dm-initramfs.rules
 
-    if [[ $ARCHISO_GNUPG_FD ]]; then
+    if [[ -v ARCHISO_GNUPG_FD ]]; then
+        add_binary gpg
         add_dir '/gpg' 0700
         gpg --homedir "$BUILDROOT/gpg" --import <&"$ARCHISO_GNUPG_FD"
     fi
