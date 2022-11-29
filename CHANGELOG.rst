@@ -11,6 +11,15 @@ Added
 Changed
 -------
 
+Removed
+-------
+
+[66] - 2022-11-29
+=================
+
+Changed
+-------
+
 - Use mkinitcpio's ``add_udev_rule`` function to add udev rules instead of adding them as regular files.
 - Use full path to ``ash`` in runtime hook shebang.
 - Use ``/usr/bin/`` instead of ``/bin/`` as the target paths for binaries.
