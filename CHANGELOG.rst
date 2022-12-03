@@ -11,6 +11,9 @@ Added
 Changed
 -------
 
+- Disable automatic ``copytoram`` if the root file system image is on ``/dev/sr*`` (an optical disc drive). Real optical
+  disc drives and remotely emulated ones can be slow and take too long to complete the copy process.
+
 Removed
 -------
 

@@ -202,7 +202,7 @@ run_hook() {
 # args: /path/to/newroot
 archiso_mount_handler() {
     local newroot="${1}"
-    local sigfile cms_sigfile fs_img fs_img_size
+    local sigfile cms_sigfile fs_img fs_img_size iso_blockdev
 
     if ! mountpoint -q "/run/archiso/bootmnt"; then
         _mnt_dev "${archisodevice}" "/run/archiso/bootmnt" "-r" "defaults"
@@ -281,13 +281,17 @@ archiso_mount_handler() {
         fi
     fi
 
-    # Enable copytoram if the root file system image size is less than 4 GiB and if the estimated available memory is
-    # more than the root file system image size + 2 GiB
+    # Enable copytoram if the following conditions apply:
+    # * the root file system image is not on an optical disc drive,
+    # * the root file system image size is less than 4 GiB,
+    # * the estimated available memory is more than the root file system image size + 2 GiB.
     if [ "${copytoram}" = "auto" ]; then
-        fs_img_size="$(du -bsk "$fs_img" | cut -f 1)"
-
-        if [ "$fs_img_size" -lt 4194304 ] && [ "$(awk '$1 == "MemAvailable:" { print $2 }' /proc/meminfo)" -gt $((fs_img_size + 2097152)) ]; then
-            copytoram="y"
+        iso_blockdev="$(realpath "$(resolve_device "$archisodevice")")"
+        if [ "$iso_blockdev" = "${iso_blockdev##/dev/sr}" ]; then
+            fs_img_size="$(du -bsk "$fs_img" | cut -f 1)"
+            if [ "$fs_img_size" -lt 4194304 ] && [ "$(awk '$1 == "MemAvailable:" { print $2 }' /proc/meminfo)" -gt $((fs_img_size + 2097152)) ]; then
+                copytoram="y"
+            fi
         fi
     fi
     if [ "${copytoram}" = "y" ]; then
