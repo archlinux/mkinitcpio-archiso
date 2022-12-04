@@ -77,7 +77,7 @@ _mnt_fs() {
             local rc=$?
         fi
 
-        if [ $rc != 0 ]; then
+        if [ "$rc" != 0 ]; then
             echo "ERROR: while copy '${img}' to '/run/archiso/copytoram/${img_fullname}'"
             launch_interactive_shell
         fi
@@ -131,7 +131,7 @@ _verify_signature() {
     gpg --homedir /gpg --status-fd 1 --verify "${sigfile}" 2>/dev/null | grep -E '^\[GNUPG:\] GOODSIG'
     _status=$?
     cd -- "${OLDPWD}" || exit 1
-    return ${_status}
+    return "${_status}"
 }
 
 _verify_cms_signature() {
@@ -165,7 +165,7 @@ _verify_cms_signature() {
         -CAfile "$cafile"
     _status=$?
     cd -- "${OLDPWD}" || exit 1
-    return ${_status}
+    return "${_status}"
 }
 
 run_hook() {
