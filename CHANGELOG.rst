@@ -11,10 +11,16 @@ Added
 Changed
 -------
 
-- Do not include the ``gpg`` binary unless the initramfs will also include a GPG keyring.
-
 Removed
 -------
+
+[67] - 2022-12-24
+=================
+
+Changed
+-------
+
+- Do not include the ``gpg`` binary unless the initramfs will also include a GPG keyring.
 
 [66] - 2022-11-29
 =================
