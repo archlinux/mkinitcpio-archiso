@@ -13,6 +13,8 @@ Changed
 
 - Disable automatic ``copytoram`` if the root file system image is on ``/dev/sr*`` (an optical disc drive). Real optical
   disc drives and remotely emulated ones can be slow and take too long to complete the copy process.
+- Replace ``poll_device`` with ``resolve_device`` in the ``archiso`` hook. This enables using ``UUID=``, ``LABEL=``,
+  ``PARTUUID`` and ``PARTLABEL`` tags to specify devices (``archisodevice``, ``cow_device`` and ``img_dev``).
 
 Removed
 -------
