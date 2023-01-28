@@ -19,7 +19,7 @@ shellcheck:
 	shellcheck -s dash $(shell find -P $(HOOKS_FILES) -type f)
 
 shfmt:
-	shfmt -i 4 -d $(shell find -P $(HOOKS_FILES) $(INSTALL_FILES) -type f)
+	shfmt -i 4 -ci -d $(shell find -P $(HOOKS_FILES) $(INSTALL_FILES) -type f)
 
 install: install-initcpio install-doc
 
