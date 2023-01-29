@@ -2,8 +2,8 @@
 mkinitcpio-archiso
 ==================
 
-The mkinitcpio-archiso project provides `initcpio <https://gitlab.archlinux.org/mkinitcpio/mkinitcpio>`_ integration for
-`archiso <https://gitlab.archlinux.org/archlinux/archiso>`_.
+The mkinitcpio-archiso project provides `initcpio <https://gitlab.archlinux.org/archlinux/mkinitcpio/mkinitcpio>`_
+integration for `archiso <https://gitlab.archlinux.org/archlinux/archiso>`_.
 The scripts offer functionality for an environment, that is running in `early user space
 <https://en.wikipedia.org/wiki/Linux_startup_process#Early_user_space>`_ by modifying an `initrd
 <https://man.archlinux.org/man/initrd.4>`_.
@@ -51,16 +51,16 @@ Contribute
 ==========
 
 Development of mkinitcpio-archiso takes place on Arch Linux' Gitlab:
-https://gitlab.archlinux.org/archlinux/mkinitcpio-archiso.
+https://gitlab.archlinux.org/archlinux/mkinitcpio/mkinitcpio-archiso.
 
-Please read our distribution-wide `Code of Conduct <https://wiki.archlinux.org/title/Code_of_conduct>`_ before
+Please read our distribution-wide `Code of Conduct <https://terms.archlinux.org/docs/code-of-conduct/>`_ before
 contributing, to understand what actions will and will not be tolerated.
 
 Read our `contributing guide <CONTRIBUTING.rst>`_ to learn more about how to provide fixes or improvements for the code
 base.
 
 Discussion around mkinitcpio-archiso takes place on the `arch-releng mailing list
-<https://lists.archlinux.org/listinfo/arch-releng>`_ and in `#archlinux-releng
+<https://lists.archlinux.org/mailman3/lists/arch-releng.lists.archlinux.org/>`_ and in `#archlinux-releng
 <ircs://irc.libera.chat/archlinux-releng>`_ on `Libera Chat <https://libera.chat/>`_.
 
 All past and present authors of mkinitcpio-archiso are listed in `AUTHORS <AUTHORS.rst>`_.
@@ -68,8 +68,8 @@ All past and present authors of mkinitcpio-archiso are listed in `AUTHORS <AUTHO
 Releases
 ========
 
-`Releases of mkinitcpio-archiso <https://gitlab.archlinux.org/archlinux/mkinitcpio-archiso/-/tags>`_ are created by
-their current maintainers
+`Releases of mkinitcpio-archiso <https://gitlab.archlinux.org/archlinux/mkinitcpio/mkinitcpio-archiso/-/tags>`_ are
+created by their current maintainers
 
 - `David Runge <https://gitlab.archlinux.org/dvzrv>`_ (``991F6E3F0765CF6295888586139B09DA5BF0D338``)
 - `nl6720 <https://gitlab.archlinux.org/nl6720>`_ (``BB8E6F1B81CF0BB301D74D1CBF425A01E68B38EF``)
