@@ -150,5 +150,6 @@ INDEX
 * script=           Takes a local file path or a URL to a script file which is
                     executed from a temporary location after boot. If the
                     parameter points at a remote file (supported protocols are
-                    http, https and ftp), it will be downloaded before execution.
+                    http, https, tftp and ftp), it will be downloaded before
+                    execution.
                     Default: (unset)

@@ -8,6 +8,8 @@ Changelog
 Added
 -----
 
+- Document ``tftp`` as a supported protocol for the ``script`` boot parameter.
+
 Changed
 -------
 
