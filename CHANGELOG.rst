@@ -8,13 +8,19 @@ Changelog
 Added
 -----
 
-- Document ``tftp`` as a supported protocol for the ``script`` boot parameter.
-
 Changed
 -------
 
 Removed
 -------
+
+[69] - 2023-12-21
+=================
+
+Added
+-----
+
+- Document ``tftp`` as a supported protocol for the ``script`` boot parameter.
 
 [68] - 2023-02-20
 =================
