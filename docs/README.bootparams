@@ -23,6 +23,14 @@ INDEX
                     Default: "/dev/disk/by-label/${archisolabel}"
 * archisobasedir=   Set the base directory where all files reside.
                     Default: "arch"
+* archisosearchuuid=     UUID used in searching for a device where archiso
+                         files reside. If a device with such UUID does not
+                         exist, looks for ${archisosearchfilename} in all
+                         available devices.
+                         Overrides ${archisodevice}.
+                         Default: (unset)
+* archisosearchfilename= File path which confirms a device is an archiso medium.
+                         Default: "/boot/${archisosearchuuid}.uuid"
 * copytoram=        If set to "y", the root file system image is copied to
                     tmpfs.
                     If set to "auto", the root file system image is copied to

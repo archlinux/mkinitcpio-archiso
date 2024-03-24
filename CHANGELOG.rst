@@ -8,6 +8,11 @@ Changelog
 Added
 -----
 
+- Implement searching for the archiso device using ``archisosearchuuid`` and ``archisosearchfilename``
+  (defaults to ``/boot/${archisosearchuuid}.uuid``) boot parameters. If a device with UUID matching
+  ``archisosearchuuid`` does not exist, then all available block devices are mounted and searched for the
+  ``archisosearchfilename`` file.
+
 Changed
 -------
 
