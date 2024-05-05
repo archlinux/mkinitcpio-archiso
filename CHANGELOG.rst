@@ -16,6 +16,7 @@ Changed
 - Increase the time ``archisosearchuuid`` waits for a device with the UUID, i.e. the ``rootdelay`` value, from 2 seconds
   to 4 seconds to give more time for USB devices to appear.
 - First search for ``archisosearchfilename`` on removable devices and only then look at non-removable devices.
+- Use mkinitcpio's new ``getarg`` function to get kernel cmdline parameters.
 
 Removed
 -------

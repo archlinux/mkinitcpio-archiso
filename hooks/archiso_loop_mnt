@@ -3,12 +3,13 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 run_hook() {
-    # shellcheck disable=SC2154
-    # defined via initcpio's parse_cmdline()
-    [ -n "${img_label}" ] && img_dev="/dev/disk/by-label/${img_label}"
-    [ -z "${img_flags}" ] && img_flags="defaults"
-    # shellcheck disable=SC2154
-    # defined via initcpio's parse_cmdline()
+    local img_label
+
+    img_label=$(getarg 'img_label')
+    img_dev="$(getarg 'img_dev')"
+    [ -n "${img_label}" ] && img_dev="$(getarg 'img_dev' "/dev/disk/by-label/${img_label}")"
+    img_flags="$(getarg 'img_flags' 'defaults')"
+    img_loop="$(getarg 'img_loop')"
     if [ -n "${img_dev}" ] && [ -n "${img_loop}" ]; then
         export mount_handler="archiso_loop_mount_handler"
     fi

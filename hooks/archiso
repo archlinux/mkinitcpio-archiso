@@ -95,11 +95,12 @@ _mnt_dev() {
     local mnt="${2}"
     local flg="${3}"
     local opts="${4}"
-    local resolved_dev
+    local resolved_dev rootdelay
 
     msg ":: Mounting '${dev}' to '${mnt}'"
 
-    while ! resolved_dev="$(rootdelay="${rootdelay:-30}" resolve_device "${dev}")"; do
+    rootdelay="$(getarg rootdelay 30)"
+    while ! resolved_dev="$(resolve_device "${dev}")"; do
         echo "ERROR: '${dev}' device did not show up after ${rootdelay:-30} seconds..."
         echo "   Falling back to interactive prompt"
         echo "   You can try to fix the problem manually, log out when you are finished"
@@ -122,10 +123,11 @@ _mnt_dev() {
 }
 
 _search_for_archisodevice() {
-    local search_dev
+    local search_dev rootdelay
 
+    rootdelay="$(getarg rootdelay 4)"
     # First try searching for a UUID matching $archisosearchuuid
-    if archisodevice="$(rootdelay="${rootdelay:-4}" resolve_device "UUID=${archisosearchuuid}")"; then
+    if archisodevice="$(resolve_device "UUID=${archisosearchuuid}")"; then
         return 0
     fi
 
@@ -211,30 +213,35 @@ _verify_cms_signature() {
 }
 
 run_hook() {
-    [ -z "${arch}" ] && arch="$(uname -m)"
-    [ -z "${copytoram}" ] && copytoram="auto"
-    [ -z "${copytoram_size}" ] && copytoram_size="75%"
-    [ -z "${archisobasedir}" ] && archisobasedir="arch"
-    [ -z "${dm_snap_prefix}" ] && dm_snap_prefix="arch"
-    # shellcheck disable=SC2154
-    # defined via initcpio's parse_cmdline()
-    [ -z "${archisodevice}" ] && archisodevice="/dev/disk/by-label/${archisolabel}"
-    [ -z "${cow_spacesize}" ] && cow_spacesize="256M"
-    [ -z "${archisosearchfilename}" ] && archisosearchfilename="/boot/${archisosearchuuid}.uuid"
-    # shellcheck disable=SC2154
-    # defined via initcpio's parse_cmdline()
-    if [ -n "${cow_label}" ]; then
-        cow_device="/dev/disk/by-label/${cow_label}"
-        [ -z "${cow_persistent}" ] && cow_persistent="P"
-    elif [ -n "${cow_device}" ]; then
-        [ -z "${cow_persistent}" ] && cow_persistent="P"
+    arch="$(getarg 'arch' "$(uname -m)")"
+    copytoram="$(getarg 'copytoram' 'auto')"
+    copytoram_size="$(getarg 'copytoram_size' '75%')"
+    archisobasedir="$(getarg 'archisobasedir' 'arch')"
+    dm_snap_prefix="$(getarg 'dm_snap_prefix' 'arch')"
+    archisolabel="$(getarg 'archisolabel')"
+    if [ -n "$archisolabel" ]; then
+        archisodevice="$(getarg 'archisodevice' "/dev/disk/by-label/${archisolabel}")"
     else
-        cow_persistent="N"
+        archisodevice="$(getarg 'archisodevice')"
+    fi
+    cow_spacesize="$(getarg 'cow_spacesize' '256M')"
+    archisosearchuuid="$(getarg 'archisosearchuuid')"
+    archisosearchfilename="$(getarg 'archisosearchfilename' "/boot/${archisosearchuuid}.uuid")"
+
+    cow_label="$(getarg 'cow_label')"
+    cow_device="$(getarg 'cow_device')"
+    if [ -n "${cow_label}" ]; then
+        cow_device="$(getarg 'cow_device' "/dev/disk/by-label/${cow_label}")"
+        cow_persistent="$(getarg 'cow_persistent' 'P')"
+    elif [ -n "${cow_device}" ]; then
+        cow_persistent="$(getarg 'cow_persistent' 'P')"
+    else
+        cow_persistent="$(getarg 'cow_persistent' 'N')"
     fi
 
-    [ -z "${cow_flags}" ] && cow_flags="defaults"
-    [ -z "${cow_directory}" ] && cow_directory="persistent_${archisolabel}/${arch}"
-    [ -z "${cow_chunksize}" ] && cow_chunksize="8"
+    cow_flags="$(getarg 'cow_flags' 'defaults')"
+    cow_directory="$(getarg 'cow_directory' "persistent_${archisolabel}/${arch}")"
+    cow_chunksize="$(getarg 'cow_chunksize' '8')"
 
     # set mount handler for archiso
     export mount_handler="archiso_mount_handler"
@@ -267,9 +274,7 @@ archiso_mount_handler() {
         launch_interactive_shell
     fi
 
-    # shellcheck disable=SC2154
-    # defined via initcpio's parse_cmdline()
-    if [ "${checksum}" = "y" ]; then
+    if [ "$(getarg 'checksum')" = "y" ]; then
         if [ -f "/run/archiso/bootmnt/${archisobasedir}/${arch}/airootfs.sha512" ]; then
             msg ":: Self-test requested, please wait..."
             if _verify_checksum; then
@@ -285,9 +290,7 @@ archiso_mount_handler() {
         fi
     fi
 
-    # shellcheck disable=SC2154
-    # defined via initcpio's parse_cmdline()
-    if [ "${verify}" = "y" ]; then
+    if [ "$(getarg 'verify')" = "y" ]; then
         if ! command -v gpg >/dev/null 2>&1; then
             echo 'ERROR: verify=y option specified but the gpg binary is not available in initramfs'
             launch_interactive_shell
@@ -309,9 +312,7 @@ archiso_mount_handler() {
         fi
     fi
 
-    # shellcheck disable=SC2154
-    # defined via initcpio's parse_cmdline()
-    if [ "${cms_verify}" = "y" ]; then
+    if [ "$(getarg 'cms_verify')" = "y" ]; then
         if [ -f "${fs_img}.cms.sig" ]; then
             cms_sigfile="${fs_img##*/}.cms.sig"
 
