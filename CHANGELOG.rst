@@ -11,6 +11,9 @@ Added
 Changed
 -------
 
+- Add files from file descriptors by piping them to mkinitcpio's ``add_file`` function instead of directly writing to
+  paths under ``$BUILDROOT``.
+
 Removed
 -------
 

@@ -33,9 +33,9 @@ build() {
         gpg --homedir "$BUILDROOT/gpg" --import <&"$ARCHISO_GNUPG_FD"
     fi
     if [[ -v ARCHISO_TLS_FD ]]; then
-        cat <&"$ARCHISO_TLS_FD" >"${BUILDROOT}/codesign.crt"
+        cat <&"$ARCHISO_TLS_FD" | add_file - '/codesign.crt' 644
     fi
     if [[ -v ARCHISO_TLSCA_FD ]]; then
-        cat <&"$ARCHISO_TLSCA_FD" >"${BUILDROOT}/codesign_CA.crt"
+        cat <&"$ARCHISO_TLSCA_FD" | add_file - '/codesign_CA.crt' 644
     fi
 }
