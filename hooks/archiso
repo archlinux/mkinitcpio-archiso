@@ -130,8 +130,13 @@ _search_for_archisodevice() {
     fi
 
     install -dm755 /archisosearch
-    # Search for $archisosearchfilename in all available block devices
-    for search_dev in $(blkid -o device); do
+    # Search for $archisosearchfilename in all available block devices. First in removable devices and then in
+    # non-removable devices.
+    for search_dev in $(lsblk -no PATH -Q 'RM == 1 && ( TYPE == "part" || TYPE == "rom" )') \
+        $(lsblk -no PATH -Q 'RM == 0 && ( TYPE == "part" || TYPE == "rom" )'); do
+        if [ ! -b "$search_dev" ]; then
+            continue
+        fi
         msg ":: Searching for '${archisosearchfilename}' in '${search_dev}'"
         umount /archisosearch 2>/dev/null
         if mount -r "$search_dev" /archisosearch 2>/dev/null; then

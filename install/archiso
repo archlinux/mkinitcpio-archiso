@@ -14,7 +14,7 @@ build() {
     add_binary dmsetup
     add_binary losetup
     add_binary openssl
-    add_binary blkid
+    add_binary lsblk
 
     if command -v pv >/dev/null 2>&1; then
         add_binary pv
