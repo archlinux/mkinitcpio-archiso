@@ -13,6 +13,8 @@ Changed
 
 - Add files from file descriptors by piping them to mkinitcpio's ``add_file`` function instead of directly writing to
   paths under ``$BUILDROOT``.
+- Increase the time ``archisosearchuuid`` waits for a device with the UUID, i.e. the ``rootdelay`` value, from 2 seconds
+  to 4 seconds to give more time for USB devices to appear.
 
 Removed
 -------
