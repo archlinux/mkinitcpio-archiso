@@ -17,6 +17,7 @@ Changed
   to 4 seconds to give more time for USB devices to appear.
 - First search for ``archisosearchfilename`` on removable devices and only then look at non-removable devices.
 - Use mkinitcpio's new ``getarg`` function to get kernel cmdline parameters.
+- Allow using ``archisosearchfilename`` without having to also set ``archisosearchuuid``.
 
 Removed
 -------
