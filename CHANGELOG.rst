@@ -18,6 +18,7 @@ Changed
 - First search for ``archisosearchfilename`` on removable devices and only then look at non-removable devices.
 - Use mkinitcpio's new ``getarg`` function to get kernel cmdline parameters.
 - Allow using ``archisosearchfilename`` without having to also set ``archisosearchuuid``.
+- Use ``pv``'s ``-o`` option to specify output instead of using shell redirection.
 
 Removed
 -------

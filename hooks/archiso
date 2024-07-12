@@ -70,7 +70,7 @@ _mnt_fs() {
         # fallback to using plain cp
         if command -v pv >/dev/null 2>&1; then
             echo ""
-            (pv "${img}" >"/run/archiso/copytoram/${img_fullname}")
+            (pv "${img}" -o "/run/archiso/copytoram/${img_fullname}")
             local rc=$?
         else
             (cp -- "${img}" "/run/archiso/copytoram/${img_fullname}")
