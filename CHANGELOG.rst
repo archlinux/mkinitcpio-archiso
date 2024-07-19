@@ -11,6 +11,21 @@ Added
 Changed
 -------
 
+Deprecated
+----------
+
+Fixed
+-----
+
+Removed
+-------
+
+[71] - 2024-07-25
+=================
+
+Changed
+-------
+
 - Add files from file descriptors by piping them to mkinitcpio's ``add_file`` function instead of directly writing to
   paths under ``$BUILDROOT``.
 - Increase the time ``archisosearchuuid`` waits for a device with the UUID, i.e. the ``rootdelay`` value, from 2 seconds
@@ -19,9 +34,6 @@ Changed
 - Use mkinitcpio's new ``getarg`` function to get kernel cmdline parameters.
 - Allow using ``archisosearchfilename`` without having to also set ``archisosearchuuid``.
 - Use ``pv``'s ``-o`` option to specify output instead of using shell redirection.
-
-Removed
--------
 
 [70] - 2024-03-30
 =================
