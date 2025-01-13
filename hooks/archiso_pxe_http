@@ -40,7 +40,7 @@ archiso_pxe_http_mount_handler() {
     local img_type="sfs"
 
     msg ":: Mounting /run/archiso/httpspace (tmpfs) filesystem, size='${archiso_http_spc}'"
-    mount --mkdir -t tmpfs -o size="${archiso_http_spc}",mode=0755 httpspace "/run/archiso/httpspace"
+    mount --mkdir -t tmpfs -o x-initrd.mount,size="${archiso_http_spc}",mode=0755 httpspace "/run/archiso/httpspace"
 
     # shellcheck disable=SC2154
     # defined in archiso hook
@@ -61,7 +61,7 @@ archiso_pxe_http_mount_handler() {
         _curl_get "${archiso_http_srv}${archisobasedir}/${arch}/airootfs.${img_type}.cms.sig" "/${arch}"
     fi
 
-    mount --mkdir -o bind /run/archiso/httpspace /run/archiso/bootmnt
+    mount --mkdir -o x-initrd.mount,bind /run/archiso/httpspace /run/archiso/bootmnt
 
     archiso_mount_handler "${newroot}"
 }
