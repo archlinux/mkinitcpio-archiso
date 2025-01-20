@@ -17,11 +17,17 @@ Deprecated
 Fixed
 -----
 
-- Use the ``x-initrd.mount`` mount option to make systemd aware of the file systems mounted in the initramfs stage so
-  that they are properly ordered for unmounting during shutdown.
-
 Removed
 -------
+
+[72] - 2025-01-23
+=================
+
+Fixed
+-----
+
+- Use the ``x-initrd.mount`` mount option to make systemd aware of the file systems mounted in the initramfs stage so
+  that they are properly ordered for unmounting during shutdown.
 
 [71] - 2024-07-25
 =================
