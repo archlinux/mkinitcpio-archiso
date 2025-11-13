@@ -23,5 +23,5 @@ Mkinitcpio-archiso Authors
 * Simon Wilper <sxw@chronowerks.de>
 * Sven-Hendrik Haase <svenstaro@gmail.com>
 * Thomas Bächler <thomas@archlinux.org>
-* nl6720 <nl6720@gmail.com>
+* nl6720 <devnull@nl6720.me>
 * Øyvind Heggstad <heggstad@gmail.com>
