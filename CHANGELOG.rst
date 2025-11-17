@@ -17,10 +17,16 @@ Deprecated
 Fixed
 -----
 
-- Drop udev rule that does no longer exist, changes were made in mkinitcpio 40-1 & lvm2 2.03.36-2.
-
 Removed
 -------
+
+[73] - 2025-11-17
+=================
+
+Fixed
+-----
+
+- Drop udev rule that does no longer exist, changes were made in mkinitcpio 40-1 & lvm2 2.03.36-2.
 
 [72] - 2025-01-23
 =================
